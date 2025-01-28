@@ -132,4 +132,50 @@ console.log(globalThis);
 Both will print the global this 
 */
 
+// ================Questions====================
+/*
+Question 1: What will be the output and why?
+const obj1 = {
+    value: 10,
+    getValue: function () {
+        return this.value;
+    },
+};
 
+const obj2 = { value: 20 };
+
+const getValue = obj1.getValue;
+console.log(getValue()); 
+console.log(obj2.getValue?.()); 
+
+Question 2: How is output 40 when "this" arrow func do not have a "this" value?
+const obj = {
+    value: 40,
+    getValue: function () {
+        const arrowFunc = () => this.value;
+        return arrowFunc();
+    },
+};
+
+console.log(obj.getValue()); // 40
+
+Question 3: Explain the output
+class Test {
+    constructor(value) {
+        this.value = value;
+    }
+
+    getValue() {
+        return this.value;
+    }
+
+    static getStaticValue() {
+        return this.value;
+    }
+}
+
+const instance = new Test(50);
+console.log(instance.getValue());
+console.log(Test.getStaticValue()); 
+
+*/
