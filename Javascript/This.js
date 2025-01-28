@@ -42,18 +42,26 @@ obj.method();
 3) Constructor Context: When a function is used as a constructor with the new keyword, this refers to the newly created instance of the object.
 
 function Person(name) {
-  this.name = name;
-}
-const person = new Person('Alice');
-console.log(person.name); // 'Alice'
+    this.name = name;
+    console.log(this);
+  }
+  const person1 = new Person('Alice');
+  const person2 = new Person('Bob');
+  console.log(person1.name); // 'Alice'
+  console.log(person2.name); // 'Bob'
 
 4) Explicit Binding: You can explicitly specify the value of this using methods like call(), apply(), or bind().
 
 function greet() {
-  console.log(`Hello, ${this.name}!`);
-}
-const obj = { name: 'Alice' };
-greet.call(obj); // 'Hello, Alice!'
+    console.log(`Hello, ${this.name}!`);
+    console.log(this);
+  }
+  const obj1 = { name: 'Alice' };
+  const obj2 = { name: 'Bob' };
+  / Call the greet function with the obj1 object as the context
+  greet.call(obj1); // 'Hello, Alice!'
+  / Call the greet function with the obj2 object as the context
+  greet.call(obj2); // 'Hello, Bob!'
 
 5) Arrow Functions: Arrow functions do not have their own this context. Instead, they inherit this from the enclosing lexical context.
 
@@ -122,29 +130,6 @@ function getThis() {
 console.log(getThis()); 
 console.log(globalThis);
 Both will print the global this 
-
-
-=========================addEventListener terms=====================
-
-------------------Bubbling and Capturing------------------
-When an event occurs on an element in the DOM (Document Object Model), it typically "bubbles" up the DOM tree from the target element to the root of the document. This bubbling behavior is called event bubbling. Additionally, there is another concept called event capturing or "capturing phase," which occurs before the bubbling phase. During the capturing phase, the event descends from the root of the document down to the target element.
-
-When you add an event listener to an element using addEventListener, you can specify whether you want to handle the event during the capturing phase (true) or the bubbling phase (false). By default, addEventListener uses the bubbling phase if the third parameter is not provided or set to false.
-
-------------------------stopPropagation()-----------------------
-Now, stopPropagation() is a method that allows you to prevent the event from propagating further up or down the DOM tree, depending on where you call it. If you call stopPropagation() during the bubbling phase, it prevents the event from further bubbling up the DOM tree. If you call it during the capturing phase, it prevents the event from further descending down the DOM tree.
 */
 
-/*
-=================Doubts==================
-function getThis() {
-    return 4;
-}
 
-const obj = {}
-obj.getThis = getThis
-
-console.log(obj.getThis()); 
-console.log(getThis.this); //value of this is undefined so in non-strict mode it should give global object why is it giving undefined
-console.log(this) //This should give node global object why is it {} ?
-*/
